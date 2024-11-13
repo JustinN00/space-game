@@ -1,0 +1,33 @@
+# Build directories
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+.vs/
+
+# MonoGame specific cache and build output
+Content/bin/
+Content/obj/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Compiled DLLs and executables
+*.dll
+*.exe
+*.pdb
+
+# Backup and old files
+*.bak
+*.old
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Visual Studio Code settings (optional)
+.vscode/

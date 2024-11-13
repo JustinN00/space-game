@@ -41,6 +41,7 @@ public class Terminal
         //     _text += key.ToString();
         // }
         if (key == Keys.Space){_text += " ";}
+        //TODO backspace don't work
         else if (key == Keys.Back){_text.TrimEnd(_text[^1]);}
         else {_text += key.ToString();}
     }
