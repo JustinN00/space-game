@@ -37,12 +37,14 @@ public class Terminal
     }
 
     public void GetInput(Keys key){
+
+        //TODO handle numbers and alpha differently
         // if (key >= Keys.A && key <= Keys.Z){
         //     _text += key.ToString();
         // }
         if (key == Keys.Space){_text += " ";}
         //TODO backspace don't work
-        else if (key == Keys.Back){_text.TrimEnd(_text[^1]);}
+        else if (key == Keys.Back && _text != ""){_text = _text.Remove(_text.Length - 1);}
         else {_text += key.ToString();}
     }
 }
