@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 public class Terminal
 {
-    private RenderTarget2D _terminalSurface;
+    public RenderTarget2D _terminalSurface;
     private GraphicsDeviceManager _graphicsDeviceManager;
     private GraphicsDevice _graphicsDevice;
     private SpriteBatch _spriteBatch;
@@ -29,11 +29,6 @@ public class Terminal
         _spriteBatch.DrawString(_font, _text, new Vector2(0,0),Color.White);
         _spriteBatch.End();
         _graphicsDevice.SetRenderTarget(null);
-        _graphicsDevice.Clear(Color.White);
-
-        _spriteBatch.Begin();
-        _spriteBatch.Draw(_terminalSurface,new Vector2(0,_graphicsDeviceManager.PreferredBackBufferHeight - _terminalSurface.Height), Color.White);
-        _spriteBatch.End();
     }
 
     public void GetInput(Keys key){

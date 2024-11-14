@@ -13,6 +13,7 @@ public class SpaceGame : Game
     private SpriteBatch _spriteBatch;
     private Ship playerShip;
     private Terminal playerTerminal;
+    private BattleField battleField;
     int maxX;
     int maxY;
     KeyboardState currentKeyboardState;
@@ -30,6 +31,7 @@ public class SpaceGame : Game
         // TODO: Add your initialization logic here
         playerShip = new Ship("ball", Content);
         playerTerminal = new Terminal(_graphics, Content);
+        battleField = new BattleField(_graphics, Content);
         maxX = _graphics.PreferredBackBufferWidth;
         maxY = _graphics.PreferredBackBufferHeight;
         base.Initialize();
@@ -37,33 +39,14 @@ public class SpaceGame : Game
 
     protected override void LoadContent()
     {
-        
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        // TODO: use this.Content to load your game content here
     }
 
     protected override void Update(GameTime gameTime)
     {
-
-
         currentKeyboardState = Keyboard.GetState();
-
-
-
-
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
-        if(Keyboard.GetState().IsKeyDown(Keys.Up)){
-            playerShip.speed += 1;
-        }
-        if(Keyboard.GetState().IsKeyDown(Keys.Down)){
-            playerShip.speed -= 1;
-        }
-        if (Keyboard.GetState().IsKeyDown(Keys.Enter) && CheckAlreadyPressed(Keys.Enter)){
-            playerShip.UpdateCords(maxX, maxY);
-        }
         foreach (Keys key in Keyboard.GetState().GetPressedKeys()){
             if(CheckAlreadyPressed(key)){
                 playerTerminal.GetInput(key);
@@ -84,10 +67,10 @@ public class SpaceGame : Game
     {
         GraphicsDevice.Clear(Color.White);
         playerTerminal.DrawToSurface();
-
-        // TODO: Add your drawing code here
+        battleField.DrawToSurface();
         _spriteBatch.Begin();
-        _spriteBatch.Draw(playerShip._shipImage, new Vector2(playerShip.X,playerShip.Y), Color.White);
+        _spriteBatch.Draw(battleField._battlefieldSurface,new Vector2(0, 0), Color.White);
+        _spriteBatch.Draw(playerTerminal._terminalSurface,new Vector2(0,_graphics.PreferredBackBufferHeight - playerTerminal._terminalSurface.Height), Color.White);
         _spriteBatch.End();
         base.Draw(gameTime);
     }
