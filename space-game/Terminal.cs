@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -31,15 +32,15 @@ public class Terminal
         _graphicsDevice.SetRenderTarget(null);
     }
 
-    public void GetInput(Keys key){
-
-        //TODO handle numbers and alpha differently
-        // if (key >= Keys.A && key <= Keys.Z){
-        //     _text += key.ToString();
-        // }
+    public void ProcessInput(Keys key){
         if (key == Keys.Space){_text += " ";}
-        //TODO backspace don't work
         else if (key == Keys.Back && _text != ""){_text = _text.Remove(_text.Length - 1);}
         else {_text += key.ToString();}
+    }
+
+    public string ReturnCommand(){
+        string command = _text;
+        _text = "";
+        return command;
     }
 }

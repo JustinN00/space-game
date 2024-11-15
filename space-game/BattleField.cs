@@ -41,7 +41,7 @@ public class BattleField
 
         //Drawing ships
         foreach(Ship ship in _ships){
-            _spriteBatch.Draw(ship._shipImage, new Rectangle(ship.X, ship.Y, _gridSpace, _gridSpace),Color.White);
+            _spriteBatch.Draw(ship._shipImage, new Rectangle(ship.X * _gridSpace, ship.Y * _gridSpace, _gridSpace, _gridSpace),Color.White);
         }
 
         _spriteBatch.End();
@@ -49,5 +49,8 @@ public class BattleField
         _graphicsDevice.SetRenderTarget(null);
     }
     public void UpdateShips(){
+        foreach(Ship ship in _ships){
+            ship.ProcessTurn();
+        }
     }
 }

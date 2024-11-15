@@ -14,6 +14,7 @@ public class SpaceGame : Game
     private Ship playerShip;
     private Terminal playerTerminal;
     private BattleField battleField;
+    private InputHandler inputHandler;
     int maxX;
     int maxY;
     KeyboardState currentKeyboardState;
@@ -32,6 +33,7 @@ public class SpaceGame : Game
         playerShip = new Ship("ball", Content);
         playerTerminal = new Terminal(_graphics, Content);
         battleField = new BattleField(_graphics, Content);
+        inputHandler = new InputHandler(playerTerminal, battleField);
         maxX = _graphics.PreferredBackBufferWidth;
         maxY = _graphics.PreferredBackBufferHeight;
         base.Initialize();
@@ -49,7 +51,7 @@ public class SpaceGame : Game
             Exit();
         foreach (Keys key in Keyboard.GetState().GetPressedKeys()){
             if(CheckAlreadyPressed(key)){
-                playerTerminal.GetInput(key);
+                inputHandler.ReadInput(key);
             }
         }
 
