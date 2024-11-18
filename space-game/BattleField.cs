@@ -42,6 +42,8 @@ public class BattleField
         //Drawing ships
         foreach(Ship ship in _ships){
             _spriteBatch.Draw(ship._shipImage, new Rectangle(ship.X * _gridSpace, ship.Y * _gridSpace, _gridSpace, _gridSpace),Color.White);
+            _spriteBatch.Draw(ship._shipImage, new Rectangle((ship.X + ship.XSpeed) * _gridSpace, (ship.Y + ship.YSpeed) * _gridSpace, _gridSpace, _gridSpace),Color.White * 0.5f);
+
         }
 
         _spriteBatch.End();
