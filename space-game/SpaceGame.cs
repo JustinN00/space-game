@@ -11,12 +11,9 @@ public class SpaceGame : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private Ship playerShip;
     private Terminal playerTerminal;
     private BattleField battleField;
     private InputHandler inputHandler;
-    int maxX;
-    int maxY;
     KeyboardState currentKeyboardState;
     KeyboardState previousKeyboardState;
 
@@ -29,12 +26,9 @@ public class SpaceGame : Game
 
     protected override void Initialize()
     {
-        playerShip = new Ship("ball", Content);
         playerTerminal = new Terminal(_graphics, Content);
         battleField = new BattleField(_graphics, Content);
         inputHandler = new InputHandler(playerTerminal, battleField);
-        maxX = _graphics.PreferredBackBufferWidth;
-        maxY = _graphics.PreferredBackBufferHeight;
         base.Initialize();
     }
 
