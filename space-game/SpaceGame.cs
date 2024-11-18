@@ -29,7 +29,6 @@ public class SpaceGame : Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
         playerShip = new Ship("ball", Content);
         playerTerminal = new Terminal(_graphics, Content);
         battleField = new BattleField(_graphics, Content);
@@ -63,7 +62,6 @@ public class SpaceGame : Game
     private bool CheckAlreadyPressed(Keys key){
         return currentKeyboardState.IsKeyDown(key) && previousKeyboardState.IsKeyUp(key);
     }
-
 
     protected override void Draw(GameTime gameTime)
     {

@@ -21,6 +21,10 @@ public class Ship
         XSpeed += XChange;
         YSpeed += YChange;
     }
+    public void NormalizeSpeed(){
+        XSpeed = 0;
+        YSpeed = 0;
+    }
 
     public void ProcessTurn(){
         X += XSpeed;
