@@ -24,12 +24,13 @@ public class InputHandler
         }
     }
     public void ParseCommand(string rawCommand){
-        string[] splitCommand = rawCommand.Split(' ');
-        List<(string, int)> parsedCommands;
-        foreach(string command in splitCommand){
-            //parse each command to determine if it is an additional command or a modifier.
+        //TODO using split or something allow for multiple inputs at once
+        // string[] splitCommand = rawCommand.Split(' ');
+        // List<(string, int)> parsedCommands;
+        // foreach(string command in splitCommand){
+        //     //parse each command to determine if it is an additional command or a modifier.
 
-        }
+        // }
 
 
         switch(rawCommand)
@@ -48,6 +49,8 @@ public class InputHandler
                 break;
             case "NORMALIZE":
                 _battlefield._ships[0].NormalizeSpeed();
+                break;
+            case "FIRE":
                 break;
         }
 

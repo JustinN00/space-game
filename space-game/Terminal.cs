@@ -36,7 +36,7 @@ public class Terminal
         if (key == Keys.Space){_text += " ";}
         else if (key == Keys.Back && _text != ""){_text = _text.Remove(_text.Length - 1);}
         else if (key >= Keys.A && key <= Keys.Z){_text += key.ToString();}
-        else {_text += "N/I";}
+        else {_text += "";}
     }
 
     public string ReturnCommand(){
