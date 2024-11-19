@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-public class SpaceObject
+public abstract class SpaceObject
 {
     public int X = 0;
     public int Y = 0;
@@ -18,12 +18,19 @@ public class SpaceObject
         _ObjectImage = contentManager.Load<Texture2D>(objectImage);
 
     }
+    public abstract void Update();
+
+
 }
 
 public class Asteroid : SpaceObject
 {
     public Asteroid(string asteroidImage, ContentManager contentManager) : base(asteroidImage, contentManager){
 
+    }
+    public override void Update()
+    {
+        
     }
 }
 
@@ -43,7 +50,7 @@ public class Ship : SpaceObject
         YSpeed = 0;
     }
 
-    public void ProcessTurn(){
+    public override void Update(){
         X += XSpeed;
         Y += YSpeed;
     }

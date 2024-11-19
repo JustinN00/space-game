@@ -17,7 +17,7 @@ public class InputHandler
     public void ReadInput(Keys keys){
         if (keys == Keys.Enter){
              ParseCommand(_terminal.ReturnCommand());
-             _battlefield.UpdateShips();
+             _battlefield.UpdateObjects();
         }
         else{
             _terminal.ProcessInput(keys);
@@ -36,20 +36,20 @@ public class InputHandler
         switch(rawCommand)
         {
             case "RIGHT":
-                _battlefield._ships[0].XSpeed += 1;
+                _battlefield._SpaceObjects[0].XSpeed += 1;
                 break;
             case "LEFT":
-                _battlefield._ships[0].XSpeed -= 1;
+                _battlefield._SpaceObjects[0].XSpeed -= 1;
                 break;
             case "UP":
-                _battlefield._ships[0].YSpeed -= 1;
+                _battlefield._SpaceObjects[0].YSpeed -= 1;
                 break;
             case "DOWN":
-                _battlefield._ships[0].YSpeed += 1;
+                _battlefield._SpaceObjects[0].YSpeed += 1;
                 break;
-            case "NORMALIZE":
-                _battlefield._ships[0].NormalizeSpeed();
-                break;
+            // case "NORMALIZE":
+            //     _battlefield._SpaceObjects[0].NormalizeSpeed();
+            //     break;
             case "FIRE":
                 break;
         }

@@ -14,14 +14,14 @@ public class BattleField
     private Texture2D _lineTexture;
     private int _gridSpace = 20;
 
-    public List<Ship> _ships;
+    public List<SpaceObject> _SpaceObjects;
 
     public BattleField(GraphicsDeviceManager _graphics, ContentManager contentManager){
         _graphicsDeviceManager = _graphics;
         _graphicsDevice = _graphics.GraphicsDevice;
         _battlefieldSurface = new RenderTarget2D(_graphics.GraphicsDevice, _graphics.PreferredBackBufferWidth, (_graphics.PreferredBackBufferHeight /4) * 3);
         _spriteBatch = new SpriteBatch(_graphicsDevice);
-        _ships = [new Ship("ball", contentManager)];
+        _SpaceObjects = [new Ship("ball", contentManager)];
 
     }
 
@@ -40,9 +40,9 @@ public class BattleField
         }
 
         //Drawing ships
-        foreach(Ship ship in _ships){
-            _spriteBatch.Draw(ship._ObjectImage, new Rectangle(ship.X * _gridSpace, ship.Y * _gridSpace, _gridSpace, _gridSpace),Color.White);
-            _spriteBatch.Draw(ship._ObjectImage, new Rectangle((ship.X + ship.XSpeed) * _gridSpace, (ship.Y + ship.YSpeed) * _gridSpace, _gridSpace, _gridSpace),Color.White * 0.5f);
+        foreach(SpaceObject spaceObject in _SpaceObjects){
+            _spriteBatch.Draw(spaceObject._ObjectImage, new Rectangle(spaceObject.X * _gridSpace, spaceObject.Y * _gridSpace, _gridSpace, _gridSpace),Color.White);
+            _spriteBatch.Draw(spaceObject._ObjectImage, new Rectangle((spaceObject.X + spaceObject.XSpeed) * _gridSpace, (spaceObject.Y + spaceObject.YSpeed) * _gridSpace, _gridSpace, _gridSpace),Color.White * 0.5f);
 
         }
 
@@ -50,9 +50,12 @@ public class BattleField
 
         _graphicsDevice.SetRenderTarget(null);
     }
-    public void UpdateShips(){
-        foreach(Ship ship in _ships){
-            ship.ProcessTurn();
+    public void UpdateObjects(){
+        foreach(SpaceObject spaceObject in _SpaceObjects){
+            spaceObject.Update();
         }
+    }
+    public void CheckCollisions(){
+        
     }
 }
