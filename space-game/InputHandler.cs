@@ -36,20 +36,20 @@ public class InputHandler
         switch(rawCommand)
         {
             case "RIGHT":
-                _battlefield._SpaceObjects[0].XSpeed += 1;
+                _battlefield._playerShip.XSpeed += 1;
                 break;
             case "LEFT":
-                _battlefield._SpaceObjects[0].XSpeed -= 1;
+                _battlefield._playerShip.XSpeed -= 1;
                 break;
             case "UP":
-                _battlefield._SpaceObjects[0].YSpeed -= 1;
+                _battlefield._playerShip.YSpeed -= 1;
                 break;
             case "DOWN":
-                _battlefield._SpaceObjects[0].YSpeed += 1;
+                _battlefield._playerShip.YSpeed += 1;
                 break;
-            // case "NORMALIZE":
-            //     _battlefield._SpaceObjects[0].NormalizeSpeed();
-            //     break;
+            case "NORMALIZE":
+                _battlefield._playerShip.NormalizeSpeed();
+                break;
             case "FIRE":
                 break;
         }

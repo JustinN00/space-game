@@ -13,7 +13,7 @@ public class BattleField
     private SpriteBatch _spriteBatch;
     private Texture2D _lineTexture;
     private int _gridSpace = 20;
-
+    public Ship _playerShip;
     public List<SpaceObject> _SpaceObjects;
 
     public BattleField(GraphicsDeviceManager _graphics, ContentManager contentManager){
@@ -21,8 +21,12 @@ public class BattleField
         _graphicsDevice = _graphics.GraphicsDevice;
         _battlefieldSurface = new RenderTarget2D(_graphics.GraphicsDevice, _graphics.PreferredBackBufferWidth, (_graphics.PreferredBackBufferHeight /4) * 3);
         _spriteBatch = new SpriteBatch(_graphicsDevice);
-        _SpaceObjects = [new Ship("ball", contentManager)];
-
+        _playerShip = new Ship("ball", contentManager);
+        _SpaceObjects = [new Asteroid("asteroid", contentManager)];
+        foreach(SpaceObject spaceObject in _SpaceObjects){
+            spaceObject.X = 10;
+            spaceObject.Y = 10;
+        }
     }
 
     public void DrawToSurface(){
@@ -40,8 +44,11 @@ public class BattleField
         }
 
         //Drawing ships
+        _spriteBatch.Draw(_playerShip._ObjectImage, new Rectangle(_playerShip.X * _gridSpace, _playerShip.Y * _gridSpace, _gridSpace, _gridSpace),Color.White);
+        _spriteBatch.Draw(_playerShip._ObjectImage, new Rectangle((_playerShip.X + _playerShip.XSpeed) * _gridSpace, (_playerShip.Y + _playerShip.YSpeed) * _gridSpace, _gridSpace, _gridSpace),Color.White * 0.5f);
         foreach(SpaceObject spaceObject in _SpaceObjects){
             _spriteBatch.Draw(spaceObject._ObjectImage, new Rectangle(spaceObject.X * _gridSpace, spaceObject.Y * _gridSpace, _gridSpace, _gridSpace),Color.White);
+            //TODO do I want all space objects to have a projection
             _spriteBatch.Draw(spaceObject._ObjectImage, new Rectangle((spaceObject.X + spaceObject.XSpeed) * _gridSpace, (spaceObject.Y + spaceObject.YSpeed) * _gridSpace, _gridSpace, _gridSpace),Color.White * 0.5f);
 
         }
@@ -51,7 +58,9 @@ public class BattleField
         _graphicsDevice.SetRenderTarget(null);
     }
     public void UpdateObjects(){
+        _playerShip.Update();
         foreach(SpaceObject spaceObject in _SpaceObjects){
+            if (spaceObject.X == _playerShip.X && spaceObject.Y == _playerShip.Y){Console.WriteLine("Ship destroyed");}
             spaceObject.Update();
         }
     }
