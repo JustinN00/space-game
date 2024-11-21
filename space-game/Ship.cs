@@ -7,20 +7,21 @@ using Microsoft.Xna.Framework.Input;
 
 public abstract class SpaceObject
 {
+    public int health;
     public int X = 0;
     public int Y = 0;
     public int XSpeed = 0;
     public int YSpeed = 0;
     public Texture2D _ObjectImage;
 
-    public SpaceObject(string objectImage, ContentManager contentManager)
+    public SpaceObject(string objectImage, ContentManager contentManager, int _health = 1)
     {
         _ObjectImage = contentManager.Load<Texture2D>(objectImage);
+        health = _health;
 
     }
+    
     public abstract void Update();
-
-
 }
 
 public class Asteroid : SpaceObject
